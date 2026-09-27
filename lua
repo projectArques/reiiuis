@@ -13,16 +13,16 @@ local FONT = 0
 
 Library.Themes = {
     Default = {
-        Bg=Color3.fromRGB(16,16,24),       Bar=Color3.fromRGB(22,22,34),
-        Accent=Color3.fromRGB(120,86,255), GroupBg=Color3.fromRGB(22,22,34),
-        GroupBorder=Color3.fromRGB(44,44,66), GroupHead=Color3.fromRGB(28,28,44),
-        TabOn=Color3.fromRGB(120,86,255),  TabOff=Color3.fromRGB(140,140,170),
-        Text=Color3.fromRGB(240,240,250),  Dim=Color3.fromRGB(158,158,185),
-        TogOn=Color3.fromRGB(120,86,255),  TogOff=Color3.fromRGB(44,44,66),
-        Thumb=Color3.fromRGB(245,245,255), Btn=Color3.fromRGB(32,32,50),
-        Sep=Color3.fromRGB(38,38,58),      SlidBg=Color3.fromRGB(28,28,46),
-        DropBg=Color3.fromRGB(20,20,32),   DropItem=Color3.fromRGB(28,28,44),
-        DropHover=Color3.fromRGB(48,48,72),DropSel=Color3.fromRGB(90,60,220),
+        Bg=Color3.fromRGB(14,16,22),       Bar=Color3.fromRGB(19,22,30),
+        Accent=Color3.fromRGB(72,201,255), GroupBg=Color3.fromRGB(19,22,30),
+        GroupBorder=Color3.fromRGB(38,44,58), GroupHead=Color3.fromRGB(24,28,38),
+        TabOn=Color3.fromRGB(255,255,255), TabOff=Color3.fromRGB(122,130,148),
+        Text=Color3.fromRGB(240,243,248),  Dim=Color3.fromRGB(146,153,172),
+        TogOn=Color3.fromRGB(72,201,255),  TogOff=Color3.fromRGB(42,47,60),
+        Thumb=Color3.fromRGB(250,251,255), Btn=Color3.fromRGB(27,31,42),
+        Sep=Color3.fromRGB(34,39,52),      SlidBg=Color3.fromRGB(24,27,36),
+        DropBg=Color3.fromRGB(16,18,25),   DropItem=Color3.fromRGB(25,29,39),
+        DropHover=Color3.fromRGB(40,46,60),DropSel=Color3.fromRGB(36,150,210),
     },
     Neon = {
         Bg=Color3.fromRGB(10,12,22),       Bar=Color3.fromRGB(15,18,32),
@@ -595,11 +595,11 @@ function Library:CreateWindow(opts)
         ShadowEnabled = true,
     }
 
-    local wShd  = d("Square",{Filled=true, ZIndex=9, Rounding=18, Color=Color3.new(0,0,0), Transparency=0.4, Visible=true,Position=Win.Pos+Vector2.new(0,6),Size=Vector2.new(W,BAR)})
+    local wShd  = d("Square",{Filled=true, ZIndex=9, Rounding=24, Color=Color3.new(0,0,0), Transparency=0.4, Visible=true,Position=Win.Pos+Vector2.new(0,6),Size=Vector2.new(W,BAR)})
     Win.ShadowTransparency = 0.4
-    local wBg   = d("Square",{Filled=true, ZIndex=10,Rounding=16,Color=T().Bg,    Visible=true,Position=Win.Pos,Size=Vector2.new(W,BAR)})
-    local wOut  = d("Square",{Filled=false,ZIndex=10,Rounding=16,Thickness=1,Color=T().GroupBorder,Visible=true,Position=Win.Pos,Size=Vector2.new(W,BAR)})
-    local wBar  = d("Square",{Filled=true, ZIndex=11,Rounding=16,Color=T().Bar,   Visible=true,Position=Win.Pos,Size=Vector2.new(W,BAR)})
+    local wBg   = d("Square",{Filled=true, ZIndex=10,Rounding=22,Color=T().Bg,    Visible=true,Position=Win.Pos,Size=Vector2.new(W,BAR)})
+    local wOut  = d("Square",{Filled=false,ZIndex=10,Rounding=22,Thickness=1,Color=T().GroupBorder,Visible=true,Position=Win.Pos,Size=Vector2.new(W,BAR)})
+    local wBar  = d("Square",{Filled=true, ZIndex=11,Rounding=22,Color=T().Bar,   Visible=true,Position=Win.Pos,Size=Vector2.new(W,BAR)})
     local wBBt  = d("Square",{Filled=true, ZIndex=11,Rounding=0,Color=T().Bar,   Visible=true,Position=Win.Pos+Vector2.new(0,BAR-4),Size=Vector2.new(W,4)})
     local wAcc  = d("Square",{Filled=true, ZIndex=12,            Color=T().Accent,Visible=true,Position=Win.Pos+Vector2.new(0,BAR),Size=Vector2.new(W,3)})
     local wTBg  = d("Square",{Filled=true, ZIndex=11,Rounding=0,Color=T().Bar,   Visible=true,Position=Win.Pos+Vector2.new(0,BAR+3),Size=Vector2.new(W,TAB_RH)})
@@ -676,7 +676,7 @@ function Library:CreateWindow(opts)
         COL = math.floor((W - PAD*2 - GAP) / 2)
         local tabRows, tx = 1, 14
         for _, btn in ipairs(Win.Btns) do
-            if #Win.Btns > 1 and tx + btn.w > W - 14 then tx = 14; tabRows = tabRows + 1 end
+            if tx + btn.w > W - 14 then tx = 14; tabRows = tabRows + 1 end
             tx = tx + btn.w + 12
         end
         local dynTH   = TAB_RH * tabRows
@@ -779,9 +779,9 @@ function Library:CreateWindow(opts)
         local GP = 10
         local GB = {items={}, pos=Vector2.new()}
 
-        local gBg  = d("Square",{Filled=true, ZIndex=14,Rounding=12,Color=T().GroupBg,     Visible=false,Size=Vector2.new(COL,GH)})
-        local gOut = d("Square",{Filled=false,ZIndex=14,Rounding=12,Thickness=1,Color=T().GroupBorder,Visible=false,Size=Vector2.new(COL,GH)})
-        local gHd  = d("Square",{Filled=true, ZIndex=15,Rounding=12,Color=T().GroupHead,   Visible=false,Size=Vector2.new(COL,GH)})
+        local gBg  = d("Square",{Filled=true, ZIndex=14,Rounding=16,Color=T().GroupBg,     Visible=false,Size=Vector2.new(COL,GH)})
+        local gOut = d("Square",{Filled=false,ZIndex=14,Rounding=16,Thickness=1,Color=T().GroupBorder,Visible=false,Size=Vector2.new(COL,GH)})
+        local gHd  = d("Square",{Filled=true, ZIndex=15,Rounding=16,Color=T().GroupHead,   Visible=false,Size=Vector2.new(COL,GH)})
         local gHF  = d("Square",{Filled=true, ZIndex=15,Rounding=0,Color=T().GroupHead,   Visible=false,Size=Vector2.new(COL,8)})
         local gHL  = d("Square",{Filled=true, ZIndex=16,            Color=T().Sep,          Visible=false,Size=Vector2.new(COL,1)})
         local gTit = d("Text",  {Text=name,Size=13,Font=FONT,Outline=false,Color=T().Dim, Visible=false,ZIndex=16})
@@ -839,26 +839,36 @@ function Library:CreateWindow(opts)
             local disabled = o.Disabled or false
             local iP  = Vector2.new()
             local isActive = false
+            local BOX = 20
             local lbl = d("Text",  {Text=txt,Size=14,Font=FONT,Outline=false,Color=disabled and T().Dim or T().Text,Visible=false,ZIndex=20})
-            local trk = d("Square",{Size=Vector2.new(38,20),Filled=true,ZIndex=20,Rounding=10,Color=disabled and T().Dim or (st and T().TogOn or T().TogOff),Visible=false})
-            local thb = d("Square",{Size=Vector2.new(16,16),Filled=true,ZIndex=21,Rounding=8,Color=disabled and T().Dim or T().Thumb,Visible=false})
+            local box = d("Square",{Size=Vector2.new(BOX,BOX),Filled=true,ZIndex=20,Rounding=6,Color=disabled and T().Dim or (st and T().TogOn or T().TogOff),Visible=false})
+            local boxOut = d("Square",{Size=Vector2.new(BOX,BOX),Filled=false,Thickness=1,ZIndex=21,Rounding=6,Color=disabled and T().Dim or T().GroupBorder,Visible=false})
+            local chk1 = d("Line",{Thickness=2,ZIndex=22,Color=T().Bg,Visible=false})
+            local chk2 = d("Line",{Thickness=2,ZIndex=22,Color=T().Bg,Visible=false})
             th(function()
                 lbl.Color = disabled and T().Dim or T().Text
-                trk.Color = disabled and T().Dim or (st and T().TogOn or T().TogOff)
-                thb.Color = disabled and T().Dim or T().Thumb
+                box.Color = disabled and T().Dim or (st and T().TogOn or T().TogOff)
+                boxOut.Color = disabled and T().Dim or T().GroupBorder
+                chk1.Color = T().Bg; chk2.Color = T().Bg
             end)
             local function refresh()
                 if not disabled then
-                    trk.Color = st and T().TogOn or T().TogOff
+                    box.Color = st and T().TogOn or T().TogOff
                 end
-                thb.Position = fv(iP + Vector2.new(COL-52+(st and 20 or 2), 8))
+                chk1.Visible = st and isActive
+                chk2.Visible = st and isActive
             end
             local it = {h=34}
-            function it.setVis(v) lbl.Visible=v; trk.Visible=v; thb.Visible=v; isActive=v end
+            function it.setVis(v)
+                lbl.Visible=v; box.Visible=v; boxOut.Visible=v; isActive=v
+                chk1.Visible = v and st; chk2.Visible = v and st
+            end
             function it.setPos(p)
                 iP=p; lbl.Position=fv(p+Vector2.new(IP,9))
-                trk.Position=fv(p+Vector2.new(COL-52,7))
-                thb.Position=fv(p+Vector2.new(COL-52+(st and 20 or 2),8))
+                local bx, by = p.X+COL-32, p.Y+7
+                box.Position=fv(Vector2.new(bx,by)); boxOut.Position=box.Position
+                chk1.From=fv(Vector2.new(bx+4,by+11)); chk1.To=fv(Vector2.new(bx+8,by+15))
+                chk2.From=fv(Vector2.new(bx+8,by+15)); chk2.To=fv(Vector2.new(bx+16,by+5))
             end
             local Tog = {State=st}
             on(UserInputService.InputBegan, function(i)
@@ -1088,7 +1098,7 @@ function Library:CreateWindow(opts)
             local bW  = COL - IP*2
             local iP  = Vector2.new()
             local isActive = false
-            local bg2 = d("Square",{Size=Vector2.new(bW,30),Filled=true,ZIndex=20,Rounding=8,Color=(disabled and T().GroupBg or T().Btn),Visible=false})
+            local bg2 = d("Square",{Size=Vector2.new(bW,30),Filled=true,ZIndex=20,Rounding=12,Color=(disabled and T().GroupBg or T().Btn),Visible=false})
             local lt  = d("Text",  {Text=txt,Size=14,Font=FONT,Outline=false,Center=true,Color=(disabled and T().Dim or T().Text),ZIndex=21,Visible=false})
             th(function() if disabled then bg2.Color = T().GroupBg; lt.Color = T().Dim else bg2.Color = T().Btn; lt.Color = T().Text end end)
             local it = {h=40}
@@ -1125,45 +1135,65 @@ function Library:CreateWindow(opts)
             local iP      = Vector2.new()
             local drag    = false
             local isActive = false
+            local TRACK_H, THUMB_W, THUMB_H = 10, 10, 22
             local lbl  = d("Text",  {Text=txt..": "..tostring(val),Size=14,Font=FONT,Outline=false,Color=disabled and T().Dim or T().Text,Visible=false,ZIndex=20})
-            local sBg  = d("Square",{Size=Vector2.new(sW,8),Filled=true,ZIndex=20,Rounding=6,Color=T().SlidBg,Visible=false})
-            local sFll = d("Square",{Size=Vector2.new(((val-mn)/(mx-mn))*sW,8),Filled=true,ZIndex=21,Rounding=6,Color=disabled and T().Dim or T().Accent,Visible=false})
-            local sThb = d("Square",{Size=Vector2.new(16,16),Filled=true,ZIndex=22,Rounding=8,Color=disabled and T().Dim or T().Thumb,Visible=false})
+            local sBg  = d("Square",{Size=Vector2.new(sW,TRACK_H),Filled=true,ZIndex=20,Rounding=5,Color=T().SlidBg,Visible=false})
+            local sFll = d("Square",{Size=Vector2.new(((val-mn)/(mx-mn))*sW,TRACK_H),Filled=true,ZIndex=21,Rounding=5,Color=disabled and T().Dim or T().Accent,Visible=false})
+            local sThb = d("Square",{Size=Vector2.new(THUMB_W,THUMB_H),Filled=true,ZIndex=23,Rounding=5,Color=disabled and T().Dim or T().Thumb,Visible=false})
+            local bubBg  = d("Square",{Filled=true,ZIndex=22,Rounding=6,Color=disabled and T().Dim or T().Accent,Visible=false})
+            local bubTxt = d("Text",  {Size=12,Font=FONT,Outline=false,Color=T().Bg,Visible=false,ZIndex=23})
             th(function()
                 lbl.Color = disabled and T().Dim or T().Text
                 sBg.Color = T().SlidBg
                 sFll.Color = disabled and T().Dim or T().Accent
                 sThb.Color = disabled and T().Dim or T().Thumb
+                bubBg.Color = disabled and T().Dim or T().Accent
+                bubTxt.Color = T().Bg
             end)
             local function apply(pct)
                 pct = math.clamp(pct, 0, 1)
                 val = mn + (mx-mn)*pct
                 if o.Rounding == 0 then val = math.floor(val) end
                 local fw = math.max(pct*sW, 0)
-                sFll.Size = Vector2.new(fw, 8)
-                sThb.Position = fv(sBg.Position + Vector2.new(fw-8, -4))
-                lbl.Text = txt..": "..tostring(math.floor(val*10)/10)
+                sFll.Size = Vector2.new(fw, TRACK_H)
+                sThb.Position = fv(sBg.Position + Vector2.new(fw-THUMB_W/2, TRACK_H/2-THUMB_H/2))
+                local shown = tostring(math.floor(val*10)/10)
+                lbl.Text = txt..": "..shown
+                bubTxt.Text = shown
+                local bw = math.max(bubTxt.TextBounds.X + 14, 26)
+                bubBg.Size = Vector2.new(bw, 18)
+                local bx = sBg.Position.X + fw - bw/2
+                bubBg.Position = fv(Vector2.new(bx, sBg.Position.Y - 30))
+                bubTxt.Position = fv(Vector2.new(bx + (bw-bubTxt.TextBounds.X)/2, sBg.Position.Y - 27))
                 if o.Callback then o.Callback(val) end
             end
             local Sld = {Value=val}
             local it = {h=56}
-            function it.setVis(v) lbl.Visible=v; sBg.Visible=v; sFll.Visible=v; sThb.Visible=v; isActive=v end
+            function it.setVis(v)
+                lbl.Visible=v; sBg.Visible=v; sFll.Visible=v; sThb.Visible=v; isActive=v
+                if not v then bubBg.Visible=false; bubTxt.Visible=false end
+            end
             function it.setPos(p)
                 iP=p; lbl.Position=fv(p+Vector2.new(IP,7))
-                sBg.Position=fv(p+Vector2.new(IP,36))
+                sBg.Position=fv(p+Vector2.new(IP,40))
                 local pct2 = (val-mn)/(mx-mn)
-                sFll.Position=sBg.Position; sFll.Size=Vector2.new(math.max(pct2*sW,0),8)
-                sThb.Position=fv(p+Vector2.new(IP+pct2*sW-8,32))
+                sFll.Position=sBg.Position; sFll.Size=Vector2.new(math.max(pct2*sW,0),TRACK_H)
+                sThb.Position=fv(p+Vector2.new(IP+pct2*sW-THUMB_W/2,40+TRACK_H/2-THUMB_H/2))
             end
             on(UserInputService.InputBegan, function(i)
                 if disabled then return end
                 if i.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
                 if Win.Active ~= parentTab or not isActive then return end
-                if over(sBg.Position, Vector2.new(sW, 20)) then
-                    drag=true; apply((UserInputService:GetMouseLocation().X-sBg.Position.X)/sW)
+                if over(sBg.Position, Vector2.new(sW, 20)) or over(sThb.Position, Vector2.new(THUMB_W, THUMB_H)) then
+                    drag=true; bubBg.Visible=true; bubTxt.Visible=true
+                    apply((UserInputService:GetMouseLocation().X-sBg.Position.X)/sW)
                 end
             end)
-            on(UserInputService.InputEnded, function(i) if i.UserInputType==Enum.UserInputType.MouseButton1 then drag=false end end)
+            on(UserInputService.InputEnded, function(i)
+                if i.UserInputType==Enum.UserInputType.MouseButton1 and drag then
+                    drag=false; bubBg.Visible=false; bubTxt.Visible=false
+                end
+            end)
             on(RunService.RenderStepped, function()
                 if disabled then return end
                 if drag and Win.Active==parentTab and isActive then apply((UserInputService:GetMouseLocation().X-sBg.Position.X)/sW); Sld.Value=val end
@@ -1251,7 +1281,7 @@ function Library:CreateWindow(opts)
             if not multi and val==nil and vals[1] then val=vals[1] end
 
             local lbl  = d("Text",  {Text=txt,Size=14,Font=FONT,Outline=false,Color=disabled and T().Dim or T().Text,Visible=false,ZIndex=20})
-            local dBg  = d("Square",{Size=Vector2.new(dW,30),Filled=true,ZIndex=20,Rounding=8,Color=disabled and T().GroupBg or T().Btn,Visible=false,Position=Vector2.new(0,0)})
+            local dBg  = d("Square",{Size=Vector2.new(dW,30),Filled=true,ZIndex=20,Rounding=12,Color=disabled and T().GroupBg or T().Btn,Visible=false,Position=Vector2.new(0,0)})
             local dVal = d("Text",  {Size=13,Font=FONT,Outline=false,Color=disabled and T().Dim or T().Text,Visible=false,ZIndex=21})
             local dArr = d("Text",  {Text="▾",Size=12,Font=FONT,Outline=false,Color=T().Dim,Visible=false,ZIndex=21})
             th(function()
@@ -1585,7 +1615,7 @@ function Library:CreateWindow(opts)
             local listening = false
 
             local lbl = d("Text",  {Text=txt,Size=14,Font=FONT,Outline=false,Color=disabled and T().Dim or T().Text,Visible=false,ZIndex=20})
-            local bg  = d("Square",{Size=Vector2.new(dW,30),Filled=true,ZIndex=20,Rounding=8,Color=disabled and T().GroupBg or T().Btn,Visible=false})
+            local bg  = d("Square",{Size=Vector2.new(dW,30),Filled=true,ZIndex=20,Rounding=12,Color=disabled and T().GroupBg or T().Btn,Visible=false})
             local valTxt = d("Text",{Text=val,Size=13,Font=FONT,Outline=false,Color=disabled and T().Dim or T().Text,Visible=false,ZIndex=21})
 
             th(function()
@@ -1703,15 +1733,25 @@ function Library:CreateWindow(opts)
     function Win:AddTab(name)
         local Tab = {L={}, R={}, Name=name}
         table.insert(Win.Tabs, Tab)
-        local tw   = math.floor(#name * 6.5) + 18
-        local btn  = {w=tw, Tab=Tab}
         local bP   = Vector2.new()
-        local bLbl = d("Text",  {Text=name,Size=12,Font=FONT,Outline=false,Color=Win.Active==Tab and T().TabOn or T().TabOff,Visible=true,ZIndex=18})
-        local bInd = d("Square",{Size=Vector2.new(tw,3),Filled=true,ZIndex=18,Rounding=2,Color=T().Accent,Visible=Win.Active==Tab})
-        th(function() bLbl.Color=(Win.Active==Tab) and T().TabOn or T().TabOff; bInd.Color=T().Accent end)
+        local bLbl = d("Text",  {Text=name,Size=12,Font=FONT,Outline=false,Color=Win.Active==Tab and T().Bg or T().TabOff,Visible=true,ZIndex=19})
+        -- Measure the label's actual rendered width instead of guessing from
+        -- character count. The guess drifted from the real text width, so the
+        -- indicator (and the spacing before the next tab) never lined up with
+        -- what was on screen.
+        local textW = (bLbl.TextBounds and bLbl.TextBounds.X) or (#name * 6.5)
+        local tw    = math.floor(textW) + 20
+        local btn   = {w=tw, Tab=Tab}
+        -- Segmented-control style: instead of an underline, the active tab
+        -- gets a solid rounded chip behind its label.
+        local bInd = d("Square",{Size=Vector2.new(textW+16,22),Filled=true,ZIndex=18,Rounding=8,Color=T().Accent,Visible=Win.Active==Tab})
+        th(function()
+            bLbl.Color=(Win.Active==Tab) and T().Bg or T().TabOff
+            bInd.Color=T().Accent
+        end)
 
         function btn.setPos(p)
-            bP=p; bLbl.Position=p; bInd.Position=fv(p+Vector2.new(0,20))
+            bP=p; bLbl.Position=p; bInd.Position=fv(p+Vector2.new(-8,-4))
         end
 
         local function activate()
@@ -1730,7 +1770,7 @@ function Library:CreateWindow(opts)
                 for _,gb in ipairs(Tab.R) do gb.setPos(gb.pos) end
                 for _,gb in ipairs(Tab.L) do gb.setVis(true) end
                 for _,gb in ipairs(Tab.R) do gb.setVis(true) end
-                bLbl.Color=T().TabOn; bInd.Visible=true
+                bLbl.Color=T().Bg; bInd.Visible=true
         end
 
         btn.bLbl=bLbl; btn.bInd=bInd
